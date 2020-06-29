@@ -138,7 +138,7 @@ def main(nivel):
 					puntajeCa = 3	
 					letraOpalabra= 'descuenta'#<---resta puntos
 						
-				ScrDic[(i,j)]={'color':("white", "orange"),'letra':'','puntajeC':puntajeCa,'letOpal':letraOpalabra}
+				ScrDic[(i,j)]={'color':("white", "orange"),'letra':'','puntImp':x,'puntajeC':puntajeCa,'letOpal':letraOpalabra}
         
 			elif (i,j) in verde:
 				x = window[(i,j)].GetText()
@@ -149,11 +149,11 @@ def main(nivel):
 					puntajeCa = 2	
 					letraOpalabra= 'descuenta'
         
-				ScrDic[(i,j)]={'color':("white", "green"),'letra':'','puntajeC':puntajeCa,'letOpal':letraOpalabra}
+				ScrDic[(i,j)]={'color':("white", "green"),'letra':'','puntImp':x,'puntajeC':puntajeCa,'letOpal':letraOpalabra}
         
 			elif (i,j) in azul:
-				
-				ScrDic[(i,j)]={'color':("white", "blue"),'letra':'','puntajeC':3,'letOpal':'letra'}
+				x = window[(i,j)].GetText()
+				ScrDic[(i,j)]={'color':("white", "blue"),'letra':'','puntImp':x,'puntajeC':3,'letOpal':'letra'}
         
 			elif (i,j) in rojo:
 				x = window[(i,j)].GetText()
@@ -164,11 +164,11 @@ def main(nivel):
 					puntajeCa = 1	
 					letraOpalabra= 'descuenta'
         
-				ScrDic[(i,j)]={'color':("white", "red"),'letra':'','puntajeC':puntajeCa,'letOpal':letraOpalabra}
+				ScrDic[(i,j)]={'color':("white", "red"),'letra':'','puntImp':x,'puntajeC':puntajeCa,'letOpal':letraOpalabra}
         
 			else:
         
-				ScrDic[(i,j)]={'color':("white", "lightblue"),'letra':'','puntajeC':0,'letOpal':''}
+				ScrDic[(i,j)]={'color':("white", "lightblue"),'letra':'','puntImp':'','puntajeC':0,'letOpal':''}
             
 	for i in range(1,8):
 
@@ -208,7 +208,7 @@ def main(nivel):
 			
 				elif event not in botones.keys():#<-------si no es un boton del atril 
 					valor_B = window[event].GetText()#<----toma la letra del segundo event
-					if valor_B == '':
+					if valor_B == '' or valor_B == 'Px2' or valor_B == 'Px3' or valor_B == 'Lx2' or valor_B == 'Lx3' or valor_B == 'Des1' or valor_B == 'Des2' or valor_B == 'Des3':#<---probando px2
 						window[event].update(valor_A, button_color=('white','black'))#<---
 						window[keys_entered].update(text='')
 						#palabra.append(valor_A)
@@ -314,7 +314,7 @@ def main(nivel):
 				else:#<--- si es incorrecta la palabra,vuelve las fichas al lugar
 					sg.popup('la palabra no es correcta,vuelva a intentarlo')
 					for i in range(len(ubicacion)):
-						window[ubicacion[i]].update('', button_color = ScrDic[ubicacion[i]]['color'])	
+						window[ubicacion[i]].update(ScrDic[ubicacion[i]]['puntImp'], button_color = ScrDic[ubicacion[i]]['color'])	
 					#ubicacion = []
 					for i in guardadoAtril:
 						window[i].update(text= botones[i])
